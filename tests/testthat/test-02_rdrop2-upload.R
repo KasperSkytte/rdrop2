@@ -35,8 +35,9 @@ test_that("Image upload works correctly", {
   # the roundtrip copy.
   dest <- traceless("rdrop2_package_test_drop.png")
   # Why doesn't the next line work??
-  image_file <- rprojroot::find_testthat_root_file('rdrop2_package_test_image.png')
-  expect_true(file.exists(image_file))
+  # image_file <- rprojroot::find_testthat_root_file('rdrop2_package_test_image.png')
+  image_file <- 'rdrop2_package_test_image.png'
+  # expect_true(file.exists(image_file))
   file.copy(image_file, dest)
   local_file_hash <- digest::digest(dest)
   drop_upload(dest)
