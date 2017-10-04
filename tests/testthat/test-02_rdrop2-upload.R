@@ -34,6 +34,7 @@ test_that("Image upload works correctly", {
   # sure that it maintains file integrity. We compare hashes of local file, then
   # the roundtrip copy.
   dest <- traceless("rdrop2_package_test_drop.png")
+  cat(testthat::test_path("pnggrad16rgb.png"))
   file.copy(testthat::test_path("pnggrad16rgb.png"), dest)
   local_file_hash <- digest::digest(dest)
   drop_upload(dest)
