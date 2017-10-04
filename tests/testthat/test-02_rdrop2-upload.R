@@ -31,11 +31,11 @@ test_that("Test that basic file ops work correctly", {
 test_that("Image upload works correctly", {
   skip_on_cran()
 
-  file_needed <- "pnggrad16rgb.png"
-  # This test is to see if we can upload an image (a png in this case) and make sure that it maintains file integrity.
-  # We compare hashes of local file, then the roundtrip copy.
+  file_needed <- testthat::test_path("pnggrad16rgb.png")
+  # This test is to see if we can upload an image (a png in this case) and make
+  # sure that it maintains file integrity. We compare hashes of local file, then
+  # the roundtrip copy.
   dest <- traceless("rdrop2_package_test_drop.png")
-  # expect_true(file.exists(file.path(system.file("data", package="rdrop2"), "pnggrad16rgb.png")))
   file.copy(file_needed, dest)
   local_file_hash <- digest::digest(dest)
   drop_upload(dest)
