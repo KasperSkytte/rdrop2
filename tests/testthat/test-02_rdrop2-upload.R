@@ -34,7 +34,7 @@ test_that("Image upload works correctly", {
   # We compare hashes of local file, then the roundtrip copy.
   dest <- traceless("rdrop2_package_test_drop.png")
   expect_true(file.exists(file.path(system.file("data", package="rdrop2"), "pnggrad16rgb.png")))
-  file.copy(file.path(system.file("data", package="rdrop2"), "pnggrad16rgb.png"), dest)
+  file.copy("../../data/pnggrad16rgb.png", dest)
   local_file_hash <- digest::digest(dest)
   drop_upload(dest)
   unlink(dest)
