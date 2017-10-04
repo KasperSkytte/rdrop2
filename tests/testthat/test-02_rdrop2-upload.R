@@ -36,9 +36,11 @@ test_that("Image upload works correctly", {
   dest <- traceless("rdrop2_package_test_drop.png")
   # Why doesn't the next line work??
   # image_file <- rprojroot::find_testthat_root_file('rdrop2_package_test_image.png')
-  image_file <- 'rdrop2_package_test_image.png'
+  image_path <- filePath <- system.file("extdata", package="dataRetrieval")
+  image_name <- "rdrop2_package_test_image.png"
+  fullPath <- file.path(image_path, image_name)
   # expect_true(file.exists(image_file))
-  file.copy(image_file, dest)
+  file.copy(fullPath, dest)
   local_file_hash <- digest::digest(dest)
   drop_upload(dest)
   unlink(dest)
