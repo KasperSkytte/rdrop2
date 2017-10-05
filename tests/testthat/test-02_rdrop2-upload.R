@@ -57,8 +57,9 @@ test_that("Image upload works correctly", {
   # Leave the image in `inst/extdata`, then
   # upload from there. Works locally but fails on Travis.
   #
-  # image_path <- filePath <- system.file("extdata", package="rdrop2")
-  # image_name <- "rdrop2_package_test_image.png" dest <- file.path(image_path,
+  # image_path <- system.file("extdata", package="rdrop2")
+  # image_name <- "rdrop2_package_test_image.png"
+  # dest <- file.path(image_path,
   # image_name)
   # ------------------------------------------------------------------------------------------
   # First locate the png inside the package. This works fine locally with all
@@ -73,7 +74,7 @@ test_that("Image upload works correctly", {
   drop_upload(dest)
   # Now delete the local copy
   unlink(dest)
-  # Now download the file again, but make sure it's back in the testthat/tests directory
+  # Now download the file again, but make sure it's back in the testthat/tests directoryQ
   drop_download(path = basename(dest), local_path = testthat::test_path("."))
   # Compute the hash on the return file
   roundtrip_file_hash <-  digest::digest(dest)
