@@ -33,21 +33,22 @@ test_that("Image upload works correctly", {
   # This test is to see if we can upload an image (a png in this case) and make
   # sure that it maintains file integrity. We compare hashes of local file, then
   # the roundtrip copy.
-  dest <- traceless("rdrop2_package_test_drop.png")
+  # dest <- traceless("rdrop2_package_test_drop.png")
   # Why doesn't the next line work??
   # image_file <- rprojroot::find_testthat_root_file('rdrop2_package_test_image.png')
   image_path <- filePath <- system.file("extdata", package="rdrop2")
   image_name <- "rdrop2_package_test_image.png"
-  fullPath <- file.path(image_path, image_name)
-  file.copy(fullPath, dest)
+  dest <- file.path(image_path, image_name)
+  # file.copy(fullPath, paste0(testthat::test_path(), "/", dest))
   local_file_hash <- digest::digest(dest)
   drop_upload(dest)
-  unlink(dest)
-  drop_download(dest)
+  # The file was uploaded from inst
+  # Now download this to
+  drop_download(path = basename(dest))
   roundtrip_file_hash <-  digest::digest(dest)
   expect_equal(local_file_hash, roundtrip_file_hash)
-  drop_delete(dest)
-  unlink(dest)
+  drop_delete(basename(dest))
+  unlink(basename(dest))
 })
 
 # Test upload of a non existent file
