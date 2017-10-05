@@ -39,8 +39,6 @@ test_that("Image upload works correctly", {
   image_path <- filePath <- system.file("extdata", package="rdrop2")
   image_name <- "rdrop2_package_test_image.png"
   fullPath <- file.path(image_path, image_name)
-  # expect_true(file.exists(image_file))
-  dest <- testthat::test_path(dest)
   file.copy(fullPath, dest)
   local_file_hash <- digest::digest(dest)
   drop_upload(dest)
