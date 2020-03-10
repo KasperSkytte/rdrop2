@@ -82,7 +82,7 @@ drop_list_shared_links <-
     shared_links_url <-
       "https://api.dropboxapi.com/2/sharing/list_shared_links"
     res <-
-      httr::POST(shared_links_url, httr::config(token = dtoken), body = list(path = path), encode = "json")
+      httr::POST(shared_links_url, httr::config(token = dtoken), body = list(path = add_slashes(path)), encode = "json")
     httr::stop_for_status(res)
     z <- httr::content(res)
     invisible(z)
