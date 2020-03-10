@@ -1,6 +1,6 @@
 Package: rdrop2
 Title: Programmatic Interface to the 'Dropbox' API
-Version: 0.8.1.9999
+Version: 0.8.1.99999
 Authors@R: c(person("Karthik", "Ram", email = "karthik.ram@gmail.com", role = c("aut", "cre")),
            person("Clayton", "Yochum", role = "aut"),
            person("Caleb", "Scheidel", role = "ctb"),
@@ -21,4 +21,5 @@ Imports:
          purrr
 Suggests: testthat,
           uuid
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2
+Encoding: UTF-8

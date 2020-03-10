@@ -57,7 +57,7 @@ drop_share <- function(path = NULL,
     url = share_url,
     httr::config(token = dtoken),
     body = list(path = path, settings = settings),
-    encode = "json" 
+    encode = "json"
   )
   # stopping for status otherwise content fails
   httr::stop_for_status(req)
@@ -68,6 +68,7 @@ drop_share <- function(path = NULL,
 #' List all shared links
 #'
 #' This function returns a list of all links that are currently being shared
+#' @template path
 #' @template token
 #' @param verbose Print verbose output
 #'
@@ -78,11 +79,11 @@ drop_share <- function(path = NULL,
 #' drop_list_shared_links()
 #' }
 drop_list_shared_links <-
-  function(verbose = TRUE, dtoken = get_dropbox_token()) {
+  function(path, verbose = TRUE, dtoken = get_dropbox_token()) {
     shared_links_url <-
       "https://api.dropboxapi.com/2/sharing/list_shared_links"
     res <-
-      httr::POST(shared_links_url, httr::config(token = dtoken), encode = "json")
+      httr::POST(shared_links_url, httr::config(token = dtoken), body = list(path = path), encode = "json")
     httr::stop_for_status(res)
     z <- httr::content(res)
     if (verbose) {

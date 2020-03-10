@@ -4,8 +4,12 @@
 \alias{drop_create}
 \title{Creates a folder on Dropbox}
 \usage{
-drop_create(path = NULL, autorename = FALSE, verbose = FALSE,
-  dtoken = get_dropbox_token())
+drop_create(
+  path = NULL,
+  autorename = FALSE,
+  verbose = FALSE,
+  dtoken = get_dropbox_token()
+)
 }
 \arguments{
 \item{path}{This is required The path to the new folder to create relative to
