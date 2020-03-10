@@ -70,7 +70,6 @@ drop_share <- function(path = NULL,
 #' This function returns a list of all links that are currently being shared
 #' @template path
 #' @template token
-#' @param verbose Print verbose output
 #'
 #' @export
 #' @references \href{https://www.dropbox.com/developers/documentation/http/documentation#sharing-list_shared_links}{API documentation}
@@ -79,19 +78,12 @@ drop_share <- function(path = NULL,
 #' drop_list_shared_links()
 #' }
 drop_list_shared_links <-
-  function(path, verbose = TRUE, dtoken = get_dropbox_token()) {
+  function(path, dtoken = get_dropbox_token()) {
     shared_links_url <-
       "https://api.dropboxapi.com/2/sharing/list_shared_links"
     res <-
       httr::POST(shared_links_url, httr::config(token = dtoken), body = list(path = path), encode = "json")
     httr::stop_for_status(res)
     z <- httr::content(res)
-    if (verbose) {
-      invisible(z)
-      pretty_lists(z)
-    } else {
-      invisible(z)
-      # TODO
-      # Clean up the verbose and non-verbose options
-    }
+    invisible(z)
   }
